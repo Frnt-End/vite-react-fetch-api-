@@ -2,9 +2,9 @@
 
 Implementing an List application using public API.
 
-## 📑Task Requirements
+## 📑 Requirements
 
-### Task Details
+### Project Details
 
 - A 10 (Pagination) pages application, each page contain list of 10 items.
 - First page is the main screen, where a user can view the first 10 items fetch from the api.
