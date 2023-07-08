@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AppContext } from "../Context/AppContext";
 import { Link } from "react-router-dom";
 import Item from "./Item";
@@ -10,12 +10,12 @@ import {
 } from "../styles/ListPage.styles";
 
 function ItemsList() {
-  let { theData, pageNum, setPageNum, setCurrentItem } = useContext(AppContext);
+  let { theData, pageNum, setPageNum } = useContext(AppContext);
 
-  const arrNum = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const arrNum = [];
 
-  function handleClick({ item }: any) {
-    setCurrentItem(item);
+  for (let a = 1; a <= 10; a++) {
+    arrNum.push(a);
   }
 
   return (
@@ -53,8 +53,8 @@ function ItemsList() {
       <ListContainer>
         <ul>
           {theData?.map((item: any) => (
-            <li key={item.id} onClick={() => handleClick({ item })}>
-              <Link to="/:details">
+            <li key={item.id}>
+              <Link to={`details/${item.id}`}>
                 <Item item={item} />
               </Link>
             </li>

@@ -1,5 +1,10 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { AppProvider } from "./Context/AppContext";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Outlet,
+} from "react-router-dom";
+import { AppContext, AppProvider } from "./Context/AppContext";
 import ItemPage from "./Components/ItemPage";
 import ItemsList from "./Components/ItemsList";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -12,7 +17,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<ItemsList />} />
-            <Route path="/:details" element={<ItemPage />} />
+            <Route path="details/:id" element={<ItemPage />} />
           </Routes>
         </Router>
       </AppProvider>

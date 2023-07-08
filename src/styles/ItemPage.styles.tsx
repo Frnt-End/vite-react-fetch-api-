@@ -4,7 +4,7 @@ export const ItemPageWrap = styled.div`
   display: flex;
   flex-direction: column;
   width: 65%;
-  height: 100vh;
+  height: 100%;
   padding: 60px 20px;
   margin: 0 auto;
   font-family: "Montserrat", sans-serif;

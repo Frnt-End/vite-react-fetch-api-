@@ -4,56 +4,55 @@ import React, { createContext, useEffect, useState } from "react";
 
 interface ContextProps {
   theData: Array<any>;
-  setTheData: React.Dispatch<React.SetStateAction<any>>;
-  pageNum: Number;
-  setPageNum: React.Dispatch<React.SetStateAction<any>>;
-  currentItem: Object | string | number | any;
-  setCurrentItem: React.Dispatch<React.SetStateAction<any>>;
+  setTheData: React.Dispatch<React.SetStateAction<any[]>>;
+  pageNum: number;
+  setPageNum: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export const AppContext = createContext({} as ContextProps);
 
 export const AppProvider = ({ children }: any) => {
-  const [theData, setTheData] = useState([]);
-  const [pageNum, setPageNum] = useState(1);
-  const [currentItem, setCurrentItem] = useState();
+  const [theData, setTheData] = useState<any[]>([]);
+  const [pageNum, setPageNum] = useState<number>(1);
 
-  const getData = async () => {
+  const fetchData = async (pageNum: number) => {
     try {
-      let rspns = await axios.get(
+      const response = await axios.get(
         `http://api.thecatapi.com/v1/images/search?limit=10&has_breeds=1&page=${pageNum}&api_key=db933426-eb41-4dbc-9cda-60bc56b6d916`
       );
-      setTheData(rspns.data);
-      setPageNum(pageNum);
-      return rspns.data;
-    } catch (err) {
-      console.error(err);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      throw error;
     }
   };
 
-  const { data, refetch } = useQuery(["list"], getData, {
-    refetchOnWindowFocus: false,
-  });
+  const { data, refetch } = useQuery<Array<any>>(
+    ["list"],
+    () => fetchData(pageNum),
+    {
+      refetchOnWindowFocus: false,
+    }
+  );
 
   useEffect(() => {
-    setPageNum(pageNum);
-    {
-      refetch();
-    }
-  }, [pageNum]);
+    setTheData(data ?? []);
+  }, [data]);
+
+  useEffect(() => {
+    refetch();
+  }, [pageNum, refetch]);
+
+  console.log("The Data is:", theData);
+
+  const contextValue: ContextProps = {
+    theData,
+    setTheData,
+    pageNum,
+    setPageNum,
+  };
 
   return (
-    <AppContext.Provider
-      value={{
-        theData,
-        setTheData,
-        pageNum,
-        setPageNum,
-        currentItem,
-        setCurrentItem,
-      }}
-    >
-      {children}
-    </AppContext.Provider>
+    <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>
   );
 };
