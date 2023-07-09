@@ -3,14 +3,13 @@ import styled from "styled-components";
 export const ItemPageWrap = styled.div`
   display: flex;
   flex-direction: column;
-  width: 65%;
+  width: 35%;
   height: 100%;
-  padding: 60px 20px;
-  margin: 0 auto;
+  margin: 40px auto;
   font-family: "Montserrat", sans-serif;
   box-shadow: 1px 1px 14px 1px rgba(0, 0, 0, 0.1);
   background: rgba(255, 255, 255, 0.66);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 
   @media (max-width: 1000px) {
     width: 90%;
@@ -21,51 +20,46 @@ export const ItemPageContent = styled.div`
   display: flex;
   flex-direction: column;
   text-align: left;
-  width: 60%;
+  width: 100%;
   margin: 0 auto;
 
   button {
-    color: #999;
-    align-self: left;
-    width: 100%;
-    border: none;
-    margin-bottom: 30px;
-    background: transparent;
-    font-size: 0.875rem;
-    font-weight: 600;
-    padding: 10px;
-    text-align: left;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    transition: 0.3s ease;
+    width: 30%;
+    padding: 5px;
+    display: flex;
+    width: 100px;
+    align-items: center;
+    color: #fff;
+    justify-content: center;
+    background-color: rgba(35, 41, 45, 0.75);
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
     cursor: pointer;
-    cursor: hand;
+    border: none;
+    position: absolute;
+
+    > span {
+      margin-right: 5px;
+      margin-left: 5px;
+      font-size: 20px;
+      transition: all 0.3s ease;
+      color: #fff;
+    }
+
+    &:hover > span {
+      transform: translateX(-6px);
+    }
 
     &:hover {
-      color: #000;
+      background-color: rgba(35, 41, 45, 1);
     }
   }
 
-  img {
-    width: 30%;
-
-    @media (max-width: 500px) {
-      width: 50%;
-    }
-  }
-
-  p {
-    font-size: calc(16px + 2 * ((100vw - 320px) / 680));
+  h1 {
+    margin-top: 0;
+    color: #23292d;
     font-weight: 400;
-    margin: 0;
     text-align: left;
-
-    span {
-      font-size: calc(11px + 2 * ((100vw - 320px) / 680));
-      font-weight: 600;
-      color: #9b9b9b;
-    }
   }
 
   a {
@@ -86,4 +80,58 @@ export const ItemPageContent = styled.div`
       background-color: #fff;
     }
   }
+`;
+
+export const ItemPageContentTop = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 200px;
+  padding: 40px 10px;
+  font-family: "Montserrat", sans-serif;
+  background: url("https://i.ibb.co/gmgV7pT/5482917.png");
+  border-bottom: 4px solid #f6f6f6;
+  position: relative;
+`;
+
+export const ImgWrap = styled.div`
+  width: 100%;
+  height: 250px;
+
+  img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+  }
+`;
+
+export const ItemPageContentBottom = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  padding: 20px 40px;
+  font-family: "Montserrat", sans-serif;
+  background: #fff;
+  color: #23292d;
+
+  p {
+    font-size: calc(14px + 2 * ((100vw - 320px) / 680));
+    font-weight: 600;
+    margin: 0;
+    text-align: left;
+
+    span {
+      font-size: calc(14px + 2 * ((100vw - 320px) / 680));
+      font-weight: 400;
+    }
+  }
+`;
+
+export const Divider = styled.div`
+  width: 100%;
+  height: 1px;
+  margin: 20px auto;
+  display: block;
+  border-bottom: 1px solid #ddd;
 `;
