@@ -19,7 +19,7 @@ Implementing an List application using public API.
 - TypeScript.
 - Styled Components.
 - React-Router V6.
-- Context for the state managment.
+- useState hook for the state managment.
 - Vitest / Testing Library.
 
 ## Run project
